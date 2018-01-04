@@ -16,11 +16,17 @@ function fetch(category){
 function* fetchMovies(action){
     const category = action.category;
     const movies = yield call( fetch, category);
-    try{
-        yield put(fetchDataSuccess(movies, category));
-    } catch(e) {
-        console.log(e);
+    const state = yield select();
+    console.log(category)
+    console.log(state.movies[category].results)
+    if(state.movies[category].results){
+        try{
+            yield put(fetchDataSuccess(movies, category));
+        } catch(e) {
+            console.log(e);
+        }
     }
+    
      
 }
 

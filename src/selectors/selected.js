@@ -1,1 +1,3 @@
-export default (store) => store.selectedBy;
+const getSelectedBy =  (store) => store.selectedBy;
+
+export default getSelectedBy;

@@ -6,7 +6,7 @@ import { Route, BrowserRouter as Router} from 'react-router-dom';
 import * as Actions from './actions/actions';
 import configureStore from './store/configureStore';
 
-import RootContainer from './containers/MoviesContainer';
+import  RootContainer from './containers/index';
 
 let store = configureStore();
 

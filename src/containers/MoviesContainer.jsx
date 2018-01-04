@@ -24,7 +24,6 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = (dispatch) => {
     return  {
         fetch: (category) => {
-            dispatch(selectBy(category))
             dispatch(fetchData(category));
         }
     }
