@@ -1,0 +1,9 @@
+.moviesBody{
+    position: relative;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    align-content: flex-start;
+    margin: 40px -15px;
+}

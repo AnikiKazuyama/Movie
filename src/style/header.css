@@ -1,0 +1,19 @@
+.header {
+    background-color: #081c24;
+}
+
+.nav{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    padding: 20px 0;
+}
+
+.nav__item {
+    color: white;
+    font-size: 18px;
+}
+
+.nav__item:hover{
+    
+}

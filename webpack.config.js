@@ -41,6 +41,10 @@ module.exports = {
             presets: ['react', 'babel-preset-env', 'stage-2']
         }
     },
+    {
+      test: /\.css$/, 
+      loader: "style-loader!css-loader"
+    }
     ],
 
   },

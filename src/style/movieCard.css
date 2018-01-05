@@ -1,0 +1,19 @@
+.movieCard{
+    width: 20%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin: 0 15px;
+    margin-bottom: 24px;
+}
+
+.movieCard__description{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    padding: 15px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    background: white;
+}
+
+.movieCard__title{
+
+}

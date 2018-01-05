@@ -17,8 +17,7 @@ function* fetchMovies(action){
     const category = action.category;
     const movies = yield call( fetch, category);
     const state = yield select();
-    console.log(category)
-    console.log(state.movies[category].results)
+    
     if(state.movies[category].results){
         try{
             yield put(fetchDataSuccess(movies, category));

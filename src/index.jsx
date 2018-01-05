@@ -8,6 +8,13 @@ import configureStore from './store/configureStore';
 
 import  RootContainer from './containers/index';
 
+import '../src/style/loader.css';
+import '../src/style/header.css';
+import '../src/style/main.css';
+import '../src/style/moviesBody.css';
+import '../src/style/movieCard.css';
+import '../src/style/normolize.css';
+
 let store = configureStore();
 
 const render = (Component) => {
