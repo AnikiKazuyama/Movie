@@ -2,6 +2,8 @@ import React from 'react';
 
 import Header from './header';
 import MoviesBody from './moviesBody';
+import Paginator from './paginator';
+import { Switch } from 'react-router-dom';
 
 const Fragment = React.Fragment;
 
@@ -12,38 +14,43 @@ export default class Movies extends React.Component {
     }
 
     componentWillMount(){
-        const { fetch, selectedBy, movies } = this.props;
-        if(movies.length === 0){
-            fetch(selectedBy);
-        }
+        const { fetchIfNeeded, category, url } = this.props;
+        fetchIfNeeded(category, url);
     }
 
     componentWillReceiveProps(nextProps){
-        const { fetch, selectedBy, movies } = this.props;
-        if(selectedBy != nextProps.selectedBy && nextProps.movies.length === 0){
-            fetch(nextProps.selectedBy)
+        const { fetchIfNeeded, fetchNextIfNeeded, category, url, location } = this.props;
+        if(category != nextProps.category){
+            fetchIfNeeded(nextProps.category, nextProps.url);
         }
-    }
-    
-    componentDidMount(){
+        // else if(location != nextProps.location){
+        //         fetchNextIfNeeded(nextProps.category, nextProps.url);
+        //     }
+        } 
 
-        const { movies, fetch, selectedBy } = this.props;
-    }
-
-    renderPosters(movies){
-        const imgUrl = 'https://image.tmdb.org/t/p';
-        return movies.map(movie => <div key = {movie.id}><img style = {{display: 'blcok', width: 100+'%'}}  src={imgUrl+'/w1000'+movie.poster_path} alt=""/></div> )
-    }
-
+  
     render(){
-        const { movies, isFetching, fetch } = this.props;
+        console.log('рундер');
+        const { 
+            movies,
+            page,
+            total_pages, 
+            isFetching, 
+            fetch, 
+            location, 
+            match,
+            fetchIfNeeded,
+            url,
+            category
+        } = this.props;
 
         return(
             <div className="movies">
                 <div className="container">
                     <MoviesBody movies = { movies } isFetching = { isFetching }/> 
+                    <Paginator page = { page } total_pages = { total_pages } category = { category } location = { location } match = { match } />
                 </div>                         
-            </div>     
+            </div>
         );
     }
 

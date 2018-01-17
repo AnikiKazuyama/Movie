@@ -4,7 +4,8 @@ const initialState = {
     page: null, 
     total_pages: null, 
     total_results: null, 
-    results: []
+    results: [], 
+    isFetching: false
 };
 
 function category(state = initialState, action){
@@ -20,14 +21,17 @@ function category(state = initialState, action){
                 ...state, 
                 ...action.data,
                 isFetching: false,
-            }
-        default: state
+            };
+        default: 
+            return state;
     }
 }
 
 export default function movies (state = {}, action) {
     switch (action.type){
         case ActionTypes.FETCH_DATA:
+        case ActionTypes.FETCH_MOIVES_IF_NEEDED:
+        case ActionTypes.FETCH_NEXT_MOIVES_IF_NEEDED:
         case ActionTypes.FETCH_DATA_SUCCESS: 
             return {
                 ...state, 

@@ -1,12 +1,7 @@
 import * as ActionTypes from '../constants/AsyncActions';
 import { SELECTED_BY } from "../constants/Actions";
-
-export function fetchDataIfNedeed(category){
-    return {
-        type: ActionTypes, 
-        category
-    }
-}
+import { POPULAR } from '../constants/Api';
+import { FETCH_MOIVES_IF_NEEDED, FETCH_NEXT_MOIVES_IF_NEEDED } from '../constants/AsyncActions';
 
 export function fetchData(category){
     return {
@@ -15,7 +10,8 @@ export function fetchData(category){
     }
 }
 
-export function fetchDataSuccess(data, category){
+export function fetchDataSuccess(category, data){
+
     return {
         type: ActionTypes.FETCH_DATA_SUCCESS,
         data,
@@ -23,9 +19,18 @@ export function fetchDataSuccess(data, category){
     }
 }
 
-export function selectBy(category){
+export function fetchMoviesIfNeeded(category, url){
     return{
-        type: SELECTED_BY, 
-        category
+        type: FETCH_MOIVES_IF_NEEDED, 
+        category,
+        url
+    }
+}
+
+export function fetchNextMoviesIfNeeded(category, url){
+    return{
+        type: FETCH_NEXT_MOIVES_IF_NEEDED, 
+        category,
+        url
     }
 }

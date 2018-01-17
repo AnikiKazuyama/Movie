@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import { Provider } from 'react-redux';
 import { Route, BrowserRouter as Router} from 'react-router-dom';
+import { ConnectedRouter } from 'react-router-redux';
+import createHistory from 'history/createBrowserHistory';
 
 import * as Actions from './actions/actions';
 import configureStore from './store/configureStore';
@@ -14,15 +16,18 @@ import '../src/style/main.css';
 import '../src/style/moviesBody.css';
 import '../src/style/movieCard.css';
 import '../src/style/normolize.css';
+import '../src/style/paginator.css';
+import '../src/style/movies.css';
 
 let store = configureStore();
+const history = createHistory();
 
 const render = (Component) => {
     ReactDom.render(
         <Provider store = { store }>
-            <Router>
-                <Component huj = 'sas'/>
-            </Router>
+            <ConnectedRouter history = { history } >
+                <Component/>
+            </ConnectedRouter>
         </Provider>, 
         document.getElementById('root')
     );

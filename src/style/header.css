@@ -9,11 +9,13 @@
     padding: 20px 0;
 }
 
-.nav__item {
+.nav__link{
+    padding: 20px 25px;
     color: white;
+    font-weight: 400;
     font-size: 18px;
 }
 
-.nav__item:hover{
-    
+.nav__link:hover{
+    background-color: #10242C;
 }

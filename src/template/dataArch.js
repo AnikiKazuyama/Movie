@@ -1,6 +1,7 @@
 store = {
     movies: {
         popular:{
+            1: {             
             page: 1,
             total_results: 19819,
             total_pages: 991,
@@ -48,6 +49,7 @@ store = {
                     release_date: "1995-12-15"
                   }
             ]
+            }
         }, 
 
         recent: {

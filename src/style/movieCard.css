@@ -14,6 +14,11 @@
     background: white;
 }
 
-.movieCard__title{
+.movieCard__poster{
+    background-color: rgba(0, 0, 0, 0.2);
+    min-height: 300px;
+}
 
+.movieCard__title{
+    min-height: 10px;
 }
