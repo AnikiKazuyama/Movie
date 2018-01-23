@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux';
-import movies from './moviesFetch';
-import selectedBy from './selectedBy';
 import { routerReducer } from 'react-router-redux';
 
+import movies from './moviesFetch';
+import movie from './movie';
+
  const root = combineReducers({
-    movies, 
+    movies,
+    movie, 
     routing: routerReducer
 });
 

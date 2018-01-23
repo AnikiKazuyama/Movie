@@ -30,8 +30,6 @@ function category(state = initialState, action){
 export default function movies (state = {}, action) {
     switch (action.type){
         case ActionTypes.FETCH_DATA:
-        case ActionTypes.FETCH_MOIVES_IF_NEEDED:
-        case ActionTypes.FETCH_NEXT_MOIVES_IF_NEEDED:
         case ActionTypes.FETCH_DATA_SUCCESS: 
             return {
                 ...state, 

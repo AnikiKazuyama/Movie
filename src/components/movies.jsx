@@ -14,41 +14,36 @@ export default class Movies extends React.Component {
     }
 
     componentWillMount(){
-        const { fetchIfNeeded, category, url } = this.props;
-        fetchIfNeeded(category, url);
+        const { fetchCategory, category, url } = this.props;
+        fetchCategory(category, url);
     }
 
     componentWillReceiveProps(nextProps){
-        const { fetchIfNeeded, fetchNextIfNeeded, category, url, location } = this.props;
-        if(category != nextProps.category){
-            fetchIfNeeded(nextProps.category, nextProps.url);
+        const { fetchCategory, location, match } = this.props;
+    
+        if(location != nextProps.location){
+            fetchCategory(nextProps.category, nextProps.url)
         }
-        // else if(location != nextProps.location){
-        //         fetchNextIfNeeded(nextProps.category, nextProps.url);
-        //     }
-        } 
+    } 
 
-  
     render(){
-        console.log('рундер');
         const { 
             movies,
             page,
             total_pages, 
             isFetching, 
-            fetch, 
             location, 
             match,
-            fetchIfNeeded,
-            url,
             category
         } = this.props;
+        
+        const url = match.url;
 
         return(
             <div className="movies">
                 <div className="container">
-                    <MoviesBody movies = { movies } isFetching = { isFetching }/> 
-                    <Paginator page = { page } total_pages = { total_pages } category = { category } location = { location } match = { match } />
+                    <MoviesBody movies = { movies } isFetching = { isFetching } match = { match }/> 
+                    <Paginator currentPage = { page } total_pages = { total_pages } category = { category } url = { url } />
                 </div>                         
             </div>
         );

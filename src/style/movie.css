@@ -1,0 +1,39 @@
+.movie{
+    padding-top: 50px;
+    color: white;
+}
+
+.movie__custom-bg{
+    position: relative;
+    background-size: cover;
+    z-index: 1
+}
+
+.movie__custom-bg::after{
+    content: '';
+    position: absolute;
+    top: 0; 
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.85);
+    z-index: -1;
+}
+
+.movie__content{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    padding: 25px 0;
+}
+
+.movie__poster{ 
+    margin-right: 20px;
+    width: 300px;
+    height: 450px;
+}
+
+.movie__info{
+    width:800px;
+}

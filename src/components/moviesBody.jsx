@@ -5,7 +5,7 @@ import MoviesBodyRender from './moviesBodyRender';
 
 const MoviesBody = (props) => {
 
-        const { isFetching, movies } = props;
+        const { isFetching, movies, match } = props;
 
         return(
             <div className="moviesBody">

@@ -5,19 +5,11 @@ import { Route, BrowserRouter as Router} from 'react-router-dom';
 import { ConnectedRouter } from 'react-router-redux';
 import createHistory from 'history/createBrowserHistory';
 
-import * as Actions from './actions/actions';
 import configureStore from './store/configureStore';
 
 import  RootContainer from './containers/index';
 
-import '../src/style/loader.css';
-import '../src/style/header.css';
-import '../src/style/main.css';
-import '../src/style/moviesBody.css';
-import '../src/style/movieCard.css';
-import '../src/style/normolize.css';
-import '../src/style/paginator.css';
-import '../src/style/movies.css';
+import '../src/style/root.css';
 
 let store = configureStore();
 const history = createHistory();

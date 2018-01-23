@@ -15,6 +15,7 @@
 }
 
 .movieCard__poster{
+    display: block;
     background-color: rgba(0, 0, 0, 0.2);
     min-height: 300px;
 }
