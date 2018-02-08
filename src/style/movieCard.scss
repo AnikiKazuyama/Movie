@@ -1,0 +1,53 @@
+
+.movieCard{
+    display: flex;
+    flex-flow: column wrap;
+    width: 100%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+}
+
+.movieCard__description{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    flex-grow: 1;
+    padding: 15px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    background: white;
+}
+
+.movieCard__poster{
+    display: block;
+    background-color: rgba(0, 0, 0, 0.2);
+    min-height: 260px;
+}
+
+.movieCard__title{
+    width: 75%;
+}
+
+.movieCard__averageRating{
+    width: 20%;
+}
+
+@media (min-width: 480px){
+    .movieCard{
+        width: calc(50% - 8px);
+    }
+
+    .movieCard__poster{
+        min-height: 260px;
+    }
+}
+
+@media (min-width: 1024px){
+    .movieCard{
+        width: calc(25% - 8px);
+    }
+
+    .movieCard__poster{
+        min-height: 220px;
+    }
+}

@@ -13,16 +13,17 @@ export default class Movies extends React.Component {
         this.renderTimes = 0;
     }
 
-    componentWillMount(){
-        const { fetchCategory, category, url } = this.props;
-        fetchCategory(category, url);
+    componentDidMount(){
+        const { fetchCategory, category, page, url } = this.props;
+
+        fetchCategory(category, page, url);
     }
 
     componentWillReceiveProps(nextProps){
-        const { fetchCategory, location, match } = this.props;
-    
+        const { fetchCategory, location } = this.props;
+
         if(location != nextProps.location){
-            fetchCategory(nextProps.category, nextProps.url)
+            fetchCategory(nextProps.category, nextProps.page, nextProps.url)
         }
     } 
 
@@ -38,13 +39,12 @@ export default class Movies extends React.Component {
         } = this.props;
         
         const url = match.url;
-
         return(
             <div className="movies">
                 <div className="container">
                     <MoviesBody movies = { movies } isFetching = { isFetching } match = { match }/> 
-                    <Paginator currentPage = { page } total_pages = { total_pages } category = { category } url = { url } />
                 </div>                         
+                <Paginator currentPage = { page } total_pages = { total_pages } category = { category } url = { url } />
             </div>
         );
     }

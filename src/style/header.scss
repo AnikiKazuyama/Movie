@@ -1,0 +1,51 @@
+.header {
+    background-color: #081c24;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 10000;
+}
+
+.nav{
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.nav__item{
+    width: 100%;
+}
+
+.nav__link{
+    text-align: center;
+    display: block;
+    padding: 20px 20px;
+    color: white;
+}
+
+.nav__link:hover{
+    background-color: #10242C;
+}
+
+@media (min-width: 480px){
+    .nav{
+        width: 100%;
+        flex-flow: column wrap;
+        align-items: center;
+    }
+}
+
+@media (min-width: 905px){
+    .nav{
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: space-between;
+        width: 65%;
+        margin: 0 auto;
+        font-size: 24px;
+    }
+
+    .nav__item{
+        width: auto;
+    }
+}

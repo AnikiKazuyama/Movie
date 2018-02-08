@@ -9,11 +9,21 @@ import Main from './main';
 
 const Fragment = React.Fragment;
 
-const Root = () => 
-    <Fragment>
-        <HeaderContainer/>
-        <Main/>
-    </Fragment>
+export default class Root extends React.Component{
+    componentWillReceiveProps(nextProps){
+        const { location } = this.props;
+        const nextLocation  = nextProps.location;
+        if(location != nextLocation){
+            window.scrollTo(0,0);
+        }
+    }
 
-
-export default Root;
+    render(){
+        return(
+            <Fragment>
+                <HeaderContainer/>
+                <Main/>
+            </Fragment>
+        );
+    }
+}

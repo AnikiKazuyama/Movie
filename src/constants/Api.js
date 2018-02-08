@@ -4,3 +4,4 @@ export const LANGUAGE = 'language';
 export const MOVIE = 'movie';
 export const POPULAR = 'popular';
 export const REGION = 'region';
+export const APPEND_TO_RESPONSE = "append_to_response";

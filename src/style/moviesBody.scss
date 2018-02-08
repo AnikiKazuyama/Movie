@@ -1,8 +1,7 @@
 .moviesBody{
-    position: relative;
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
-    align-items: flex-start;
-    align-content: flex-start;
+    align-items: stretch;
+    padding-bottom: 25px;
 }

@@ -9,7 +9,9 @@ import configureStore from './store/configureStore';
 
 import  RootContainer from './containers/index';
 
-import '../src/style/root.css';
+import '../src/style/root.scss';
+import './fonts/Roboto/Roboto-Light.ttf';
+
 
 let store = configureStore();
 const history = createHistory();

@@ -8,19 +8,33 @@ const initialState = {
     isFetching: false
 };
 
-function category(state = initialState, action){
-    
+function page(state = initialState, action){
     switch (action.type){
         case ActionTypes.FETCH_DATA:
             return {
-                ...state,
+                ...state, 
                 isFetching: true
-            };
-        case ActionTypes.FETCH_DATA_SUCCESS:
+            }
+
+        case ActionTypes.FETCH_DATA_SUCCESS: 
             return {
                 ...state, 
-                ...action.data,
-                isFetching: false,
+                ...action.data, 
+                isFetching: false
+            };
+            
+        default: 
+            return state;
+    }
+} 
+
+function category(state = {} , action){
+    switch (action.type){
+        case ActionTypes.FETCH_DATA:
+        case ActionTypes.FETCH_DATA_SUCCESS:
+            return {
+                ...state,
+                [action.page]: page(state[action.page], action)
             };
         default: 
             return state;

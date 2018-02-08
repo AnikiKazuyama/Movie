@@ -10,6 +10,7 @@ module.exports = {
   },
 
   output: {
+    publicPath: '/',
     path: `${__dirname}/dist`,
     filename: 'bundle.js',
   },
@@ -40,11 +41,30 @@ module.exports = {
         query: {
             presets: ['react', 'babel-preset-env', 'stage-2']
         }
-    },
-    {
-      test: /\.css$/, 
-      loader: "style-loader!css-loader"
-    }
+      },
+
+      {
+        test: /\.scss$/,
+        use: ExtractTextPlugin.extract({
+            fallback: 'style-loader',
+            use: ['css-loader','sass-loader'],
+        }),
+      }, 
+
+      {
+        test: /^(?!.*\.generated\.ttf$).*\.ttf$/,
+        use: ['css-loader', 'fontface-loader'],
+      },
+      
+      {
+        test: /\.generated.(ttf|eot|woff|woff2)$/,
+        use: [{
+          loader: 'file-loader',
+          options: {
+            outputPath: '../fonts/Roboto',
+          },
+        }],
+      }
     ],
 
   },
@@ -60,7 +80,9 @@ module.exports = {
       template: './src/template/index.html'
     }), 
 
-    new CleanWebpackPlugin(['dist'])
+    new CleanWebpackPlugin(['dist']), 
+
+    new ExtractTextPlugin('./css/[name].css'),
   ]
 
  }

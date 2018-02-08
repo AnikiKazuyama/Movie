@@ -13,7 +13,7 @@ const MoviesBodyRender = (props) => {
             vote_count,
             id 
         } = movie; 
-
+        
         return <MovieCard key          = { id }
                           poster_path  = { poster_path }
                           title        = { title }

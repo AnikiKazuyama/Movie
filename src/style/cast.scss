@@ -1,0 +1,10 @@
+.full-cast{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    padding: 15px 0;
+}
+
+.full-cast > .person-card {
+    margin-bottom: 15px; 
+}

@@ -6,10 +6,11 @@ export default class Paginator extends React.Component{
 
     nextPage(){
         const { url, total_pages, currentPage } = this.props;
+
         return (
             currentPage < total_pages ?
-                  <Link to = { `${url}?page=${currentPage + 1}`} className = { 'paginator__link' } key = { total_pages + 1 }>Next</Link> :
-                  <div className = { 'paginator__link' } key = { total_pages + 1 }>Next</div>
+                  <Link to = { `${url}?page=${currentPage + 1}`} className = { 'paginator__link paginator__link-next' } key = { total_pages + 1 }><span className = "arrow right"/></Link> :
+                  <div className = { 'paginator__link paginator__link-next' } key = { total_pages + 1 }><span className = "arrow right"/></div>
         )
     }
 
@@ -18,8 +19,8 @@ export default class Paginator extends React.Component{
 
         return (
             currentPage > 1 ?
-                  <Link to = { `${url}?page=${currentPage - 1}`} className = { 'paginator__link' } key = { 0 }>Prev</Link> :
-                  <div className = { 'paginator__link' } key = { 0 }>Prev</div>
+                  <Link to = { `${url}?page=${currentPage - 1}`} className = { 'paginator__link paginator__link-prev' } key = { 0 }><span className = "arrow left"/></Link> :
+                  <div className = { 'paginator__link paginator__link-prev' } key = { 0 }><span className = "arrow left"/></div>
         )
     }
 
@@ -39,22 +40,28 @@ export default class Paginator extends React.Component{
         const { currentPage, total_pages, url } = this.props;
 
         let paginator = [];
-
-        if(currentPage){
+        
+        if(total_pages){
             const { prevPage, nextPage } = this.nextPrevPage();
 
             paginator.push(prevPage);
 
             let lastLink = null;
 
-            total_pages >= 5 ? lastLink = currentPage + 4 : lastLink = total_pages;
+            (total_pages >= 5 && (total_pages >= currentPage + 2)) ? lastLink = currentPage + 2 : lastLink = total_pages;
 
-            for(let i = currentPage; i <= lastLink; i++){
+            let i = 1;
+
+            if(currentPage >= 3){
+                i = currentPage - 2;
+            }
+
+            for(i; i <= lastLink; i++){
                 const directTo = {
                     pathname: `${url}`,
                     search: `page=${i}`
                 }
-                
+
                 paginator.push( 
                     <Link className = { currentPage == i ? 'paginator__link_active' : 'paginator__link' }
                           to        = { directTo } 

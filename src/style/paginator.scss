@@ -1,17 +1,23 @@
 .paginator{
     display: flex;
     justify-content: center;
-    margin-bottom: 25px;
+    margin-bottom: 5px;
+    font-size: 18px;
 }
 
 .paginator__link,
 .paginator__link_active{
-    display: inline-block;
-    padding: 8px 13px;
+    display: block;
+    padding: 5px 10px;
     text-decoration: none;
     color: black;
     border: 1px solid rgba(0, 0, 0, 0.09);
     margin-left: -1px;
+}
+
+.paginator__link-prev,
+.paginator__link-next{
+    padding: 3px 12px;
 }
 
 .paginator__link:hover{

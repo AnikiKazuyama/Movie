@@ -1,51 +1,78 @@
 import React from 'react';
 
-import MovieBody from './movieBody';
+import QuickView from './quickView';
 import NoMatch from './nomatch';
+import Loader from './loader';
+import PeopleMini from './peopleMini';
+import Cast from './cast';
+import Sidebar from './sidebar';
 
 import { imgPath } from '../util/img';
 
 import { IMGSIZE1000 } from '../constants/movies'
 
+import { Route } from 'react-router-dom';
+
 class Movie extends React.Component {
-    componentWillMount(){
+    componentDidMount(){
         const { url, fetch, match } = this.props;
-        const id = match.params.id
+        const id = match.params.id;
         fetch(id, url);
     }
 
     render(){
-        const { match, movie, isFetching } = this.props;
-        const {
+        const { 
+            match,
+            isFetching,
+            cast,
+            crew,
+            location,
+            releaseDate,  
             poster_path, 
             title,
+            original_title,
             overview, 
-            backdrop_path
-        } = movie;
+            backdrop_path, 
+            budget,
+            keywords,
+            error
+        } = this.props;
 
-        if(movie.error){
-            return <NoMatch error = { movie.error }/>
+        if(error){
+            return <NoMatch error = { error }/>
         }
 
-        if(movie){
-            const bgImg = {
-                backgroundImage: `url(${imgPath(IMGSIZE1000, backdrop_path)})`
-            }
-            return (
-                <div className = 'movie'>
-                    <div className="movie__custom-bg" style = { bgImg }>
-                        <div className = 'container'>
-                            <MovieBody isFetching  = { isFetching }
-                                    poster_path    = { poster_path }
-                                    title          = { title }
-                                    overview       = { overview }
-                                    backdrop_path  = { backdrop_path }  
-                                    />
+        if(!title || isFetching ){
+            return <Loader isFetching/> 
+        }
+
+        return (
+            <div className = 'movie'>
+                <QuickView poster_path   = { poster_path } 
+                           title         = { title }
+                           overview      = { overview } 
+                           backdrop_path = { backdrop_path } />
+
+                <div className="bgMain">
+
+                    <div className="movie__inner container">
+
+                        <div className = 'movie__main'>
+
+                            <PeopleMini cast = { cast } location = { location } match = { match }/> 
+
                         </div>
+                        
+                        <Sidebar original_title  = { original_title }
+                                 budget          = { budget }
+                                 releaseDate     = { releaseDate }
+                                 keywords        = { keywords }/>
                     </div>
+
                 </div>
-            );
-        }
+                
+            </div>
+        );
     }
 }
 

@@ -1,0 +1,2 @@
+export const FETCH_CREDITS         = 'FETCH_CREDITS';
+export const FETCH_CREDITS_SUCCESS = 'FETCH_CREDITS_SUCCESS'

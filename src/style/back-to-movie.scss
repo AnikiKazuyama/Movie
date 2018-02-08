@@ -1,0 +1,32 @@
+.back-to-movie{
+    background-color: #337f91;
+}
+
+.poster{
+    display: flex;
+    padding: 25px 0;
+}
+
+.poster-mini{
+    width: 58px;
+    height: 87px;
+}
+
+.poster__right{
+    padding-left: 20px;
+}
+
+.poster-mini img {
+    border-radius: 3%;
+}
+
+.poster__title{
+    margin: 0 0 5px 0;
+    font-size: 3vw;
+    color: white;
+    font-weight: bold;
+}
+
+.poster__title > a{
+    color: white;
+}

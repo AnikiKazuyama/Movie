@@ -3,11 +3,12 @@ import { connect } from 'react-redux';
 
 import Movies from '../components/movies';
 
-import { fetchData } from "../actions/categoryActions"
+import { fetchMoviesIfNeeded } from "../actions/categoryActions"
 
 import { getIsFetching, getMovies, getPage, getTotal_pages, getCategory } from '../selectors/getMoviesData';
 
 import { getUrl } from '../util/urlApi';
+import { fetchMovieIfNeeded } from '../actions/movieActions';
 
 const MoviesContainer = (props) => {
     return <Movies { ...props }/>
@@ -27,8 +28,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
     return  {
-        fetchCategory: (category, url) => {
-            dispatch(fetchData(category, url));
+        fetchCategory: (category, page, url) => {
+            dispatch(fetchMoviesIfNeeded(category, page, url));
         }
     }
 }

@@ -5,26 +5,31 @@ export const getCategory = (state) => {
     return (pathname == '/') ? 'popular' : pathname.split('/')[1];
 }
     
-
-
 export const getPage = (state) => {
     const page = Number(queryStrToObj(state.routing.location.search).page);
     return page ? page : 1; 
 }
 
-
-
 export const getIsFetching = (state) => {
     const category = getCategory(state);
-    return category in state.movies ? state.movies[category].isFetching : false ;
+    const page = getPage(state);
+    const existCategory = category in state.movies;
+    const existPage = existCategory ? page in state.movies[category]: false;
+    return existPage ? state.movies[category].isFetching : false ;
 }
 
 export const getMovies = (state) => {
     const category = getCategory(state);
-    return category in state.movies ? state.movies[category].results : [];
+    const page = getPage(state);
+    const existCategory = category in state.movies;
+    const existPage = existCategory ? page in state.movies[category]: false;
+    return existPage ? state.movies[category][page].results : [];
 }
 
 export const getTotal_pages = (state) =>{
     const category = getCategory(state);
-    return category in state.movies ? state.movies[category].total_pages : null;
+    const page = getPage(state);
+    const existCategory = category in state.movies;
+    const existPage = existCategory ? page in state.movies[category]: false;
+    return existPage ? state.movies[category][page].total_pages : false;
 }

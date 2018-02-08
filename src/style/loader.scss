@@ -1,8 +1,8 @@
 .loader{
     position: absolute;
-    top: 50px;
+    top: calc(50% - 61px);
     left: 50%;
-    transform: translateX(-50%);
+    transform: translateX(50%);
     width: 100px;
     height: 100px;
     border-radius: 50%;
@@ -14,4 +14,10 @@
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
+}
+
+@media (max-width: 790px){
+    .loader{
+        top: 50%;
+    }
 }

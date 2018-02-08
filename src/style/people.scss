@@ -1,0 +1,53 @@
+.people__title{
+    font-size: 24px;
+    margin: 0  0 10px 0;
+}
+
+.people__popular-casts{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+    padding-bottom: 18px;
+}
+
+.person-card{
+    display: flex;
+    flex-direction: column;
+    width: calc(50% - 10px);
+    margin-bottom: 10px;
+    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+    background-color: white;
+}
+
+.person-card__photo{
+    display: block;
+    background-color: #ffffff;
+}
+
+.person-card__description{
+    flex-grow: 1;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    padding:  5px 10px 5px 10px;
+}
+
+.person-card__name, 
+.person-card__character{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.4em;
+}
+
+.person-card__name{
+    font-weight: bold;
+}
+
+.people__more {
+    font-size: 18px;
+    font-weight: bold; 
+}
+
+@media (min-width: 768px){
+    .person-card{
+        width: calc(25% - 10px);
+    }
+}
