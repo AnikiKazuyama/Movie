@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { imgPath } from '../util/img'
+import Img from './img';
 
+import { imgPath } from '../util/img'
 import { IMGSIZE1000 } from '../constants/movies'; 
 
 const MovieCard = (props) => {
@@ -17,7 +18,7 @@ const MovieCard = (props) => {
     return (
         <div className = 'movieCard'>
                 <Link to = { `/${ id }` } className = 'movieCard__poster'>
-                    <img src = { imgPath(IMGSIZE1000, poster_path) } alt = { title }/>
+                    <Img src = { imgPath(IMGSIZE1000, poster_path) } alt = { title }/>
                 </Link>
             
                 <Link to = { `/${ id }` } className = 'movieCard__description'>

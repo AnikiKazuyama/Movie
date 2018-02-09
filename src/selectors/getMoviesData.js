@@ -15,7 +15,7 @@ export const getIsFetching = (state) => {
     const page = getPage(state);
     const existCategory = category in state.movies;
     const existPage = existCategory ? page in state.movies[category]: false;
-    return existPage ? state.movies[category].isFetching : false ;
+    return existPage ? state.movies[category][page].isFetching : false ;
 }
 
 export const getMovies = (state) => {

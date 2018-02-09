@@ -1,23 +1,58 @@
 import React from 'react';
+import ImgWrap from '../hoc/imgWrapper';
 
-export default class Img extends React.Component{
+class Img extends React.Component{
+
+    constructor(){
+        super();
+        this.state = {
+            loaded: false, 
+            error: false
+        };
+    }
 
     componentDidMount(){
-        this.image.onload = () => {console.log('загружено')};
-        this.image.onerror = () => {this.handleError(this.image)};
-        
-    }
-
-    handleError = (image) => {
-        image.src = 'https://i5.walmartimages.com/asr/f752abb3-1b49-4f99-b68a-7c4d77b45b40_1.39d6c524f6033c7c58bd073db1b99786.jpeg?odnHeight=450&odnWidth=450&odnBg=FFFFFF';
-    }
-
-    render(){
         const { 
             src,
             alt
         } = this.props;
 
-        return <img ref = { (img) => { this.image = img } } src = { src } alt = { alt } onError = { this.handleError(this)} />
+        this.img         = new Image;
+        this.img.onload  = this.handleLoad;
+        this.img.onerror = this.handleError;
+        this.img.src     = src;
+    }
+
+    handleError = () => {
+        this.setState({ error: true });
+    }
+
+    handleLoad = () => {
+        this.setState({ loaded: true });
+    }
+
+    render(){
+        const { 
+            src,
+            unLoadSrc,
+            loadingSrc,
+            alt
+        } = this.props;
+
+        const {
+            loaded, 
+            error
+        } = this.state;
+
+        if(error){
+            return <img src = { unLoadSrc } alt = 'NotFound'/>
+        } 
+        else 
+            if(!loaded)
+                return <img src = { loadingSrc } alt = "Loading" />
+        return <img src = { src } alt = { alt }/>
+
     }
 }
+
+export default ImgWrap(Img);
