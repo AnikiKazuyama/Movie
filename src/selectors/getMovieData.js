@@ -97,7 +97,7 @@ export const getReleaseDate = (state) => {
     if(releaseDatesExist){
         const release_dates   = state.movie[id].release_dates.results;
         const releaseInRussia = collection.find(release_dates, (date) => date.iso_3166_1 == 'RU');
-        const releaseDate     = releaseInRussia.release_dates[0].release_date;
+        const releaseDate     = releaseInRussia ? releaseInRussia.release_dates[0].release_date  : 'нинаю' ;
         return dateToNormal(releaseDate);
     }
 
