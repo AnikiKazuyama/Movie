@@ -13,6 +13,8 @@ import { IMGSIZE1000 } from '../constants/movies'
 
 import { Route } from 'react-router-dom';
 
+import { dateToNormal, findeReliseDate, minutesToHours } from '../util/dateToNormal';
+
 class Movie extends React.Component {
     componentDidMount(){
         const { url, fetch, match } = this.props;
@@ -20,21 +22,31 @@ class Movie extends React.Component {
         fetch(id, url);
     }
 
+    keyWords(){
+        const keywords = this.props.movie.keywords; 
+
+        const wrappKeywords = keywords.keywords.map( keyword => {
+            return <span className = 'keyword' key = { keyword.name }>{ keyword.name }</span>
+        });
+
+        return wrappKeywords;
+    }
+
+    genres(){
+        const genres = this.props.movie.genres;
+
+        return genres.map( genre => {
+            return <span className = 'keyword' key = { genre.id } >{ genre.name }</span>
+        } )
+    }
+
     render(){
         const { 
+            credits,
             match,
             isFetching,
-            cast,
-            crew,
             location,
-            releaseDate,  
-            poster_path, 
-            title,
-            original_title,
-            overview, 
-            backdrop_path, 
-            budget,
-            keywords,
+            movie,
             error
         } = this.props;
 
@@ -42,9 +54,64 @@ class Movie extends React.Component {
             return <NoMatch error = { error }/>
         }
 
-        if(!title || isFetching ){
+        if(!movie || isFetching ){
             return <Loader isFetching/> 
         }
+
+        const {
+            title,
+            original_title,
+            overview,
+            poster_path,
+            backdrop_path,
+            budget,
+            keywords,
+            release_dates,
+            genres, 
+            runtime
+        } = movie;
+
+        const {
+            crew, 
+            cast
+        } = credits;
+
+        const date = dateToNormal(findeReliseDate(release_dates));
+
+        const sidebarTitle = 'Информация о фильме';
+
+        const sidebarConstructor = [
+            {
+                title: 'Оригинальное название', 
+                content:  original_title
+            }, 
+
+            {
+                title: 'Бюжет', 
+                content:  `$${ budget}`
+            }, 
+
+            {
+                title: 'Дата выхода', 
+                content:  date
+            },
+
+            {
+                title: 'Продолжительность', 
+                content: minutesToHours(runtime)
+            },
+
+            {
+                title: 'Ключевые слова', 
+                content:  this.keyWords()
+            },
+
+            {
+                title: 'Жанр', 
+                content:  this.genres()
+            }
+            
+        ]
 
         return (
             <div className = 'movie'>
@@ -62,11 +129,8 @@ class Movie extends React.Component {
                             <PeopleMini cast = { cast } location = { location } match = { match }/> 
 
                         </div>
-                        
-                        <Sidebar original_title  = { original_title }
-                                 budget          = { budget }
-                                 releaseDate     = { releaseDate }
-                                 keywords        = { keywords }/>
+
+                        <Sidebar sidebarConstructor = { sidebarConstructor } title = { sidebarTitle }/>
                     </div>
 
                 </div>

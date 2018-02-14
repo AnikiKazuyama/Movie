@@ -23,7 +23,6 @@ const MovieCard = (props) => {
             
                 <Link to = { `/${ id }` } className = 'movieCard__description'>
                     <div className = 'movieCard__title'>{ title }</div>
-                    <div className = 'movieCard__averageRating'>{ vote_average }</div>
                 </Link>
             
         </div>

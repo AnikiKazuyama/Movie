@@ -21,9 +21,10 @@ export default class Cast extends React.Component{
         const id = match.params.id;
         
         const allCasts = cast.map(person => {
+
             const {
-                character, 
-                name, 
+                character,
+                name,
                 profile_path,
                 id
             } = person;
@@ -32,7 +33,8 @@ export default class Cast extends React.Component{
                                 name         = { name } 
                                 profile_path = { profile_path }
                                 id           = { id }
-                                key          = { id } />
+                                key          = { id } 
+                                match        = { match }/>
         })
 
 

@@ -42,6 +42,7 @@ export default class Paginator extends React.Component{
         let paginator = [];
         
         if(total_pages){
+            
             const { prevPage, nextPage } = this.nextPrevPage();
 
             paginator.push(prevPage);
@@ -49,7 +50,7 @@ export default class Paginator extends React.Component{
             let lastLink = null;
 
             (total_pages >= 5 && (total_pages >= currentPage + 2)) ? lastLink = currentPage + 2 : lastLink = total_pages;
-
+            
             let i = 1;
 
             if(currentPage >= 3){

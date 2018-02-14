@@ -21,11 +21,6 @@
 .movieCard__poster{
     display: block;
     background-color: rgba(0, 0, 0, 0.2);
-    min-height: 260px;
-}
-
-.movieCard__title{
-    width: 75%;
 }
 
 .movieCard__averageRating{
@@ -36,18 +31,10 @@
     .movieCard{
         width: calc(50% - 8px);
     }
-
-    .movieCard__poster{
-        min-height: 260px;
-    }
 }
 
 @media (min-width: 1024px){
     .movieCard{
         width: calc(25% - 8px);
-    }
-
-    .movieCard__poster{
-        min-height: 220px;
     }
 }

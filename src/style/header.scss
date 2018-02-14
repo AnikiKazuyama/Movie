@@ -10,10 +10,28 @@
 .nav{
     font-size: 18px;
     font-weight: 700;
+    list-style: none;
+}
+
+.nav__sub-menu{
+    display: flex;
+    width: 0;
+    list-style: none;
+    overflow: hidden;
+    transition: width 0.7s cubic-bezier(0.445, 0.05, 0.55, 0.95);
 }
 
 .nav__item{
     width: 100%;
+    white-space: nowrap;
+}
+
+.with-sub-menu{
+    display: flex;
+}
+
+.with-sub-menu:hover .nav__sub-menu{
+    width: 528px;
 }
 
 .nav__link{
@@ -39,7 +57,7 @@
     .nav{
         display: flex;
         flex-flow: row wrap;
-        justify-content: space-between;
+        justify-content: flex-end;
         width: 65%;
         margin: 0 auto;
         font-size: 24px;

@@ -33,7 +33,6 @@ export default class Movies extends React.Component {
             page,
             total_pages, 
             isFetching, 
-            location, 
             match,
             category
         } = this.props;

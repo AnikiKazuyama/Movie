@@ -27,7 +27,7 @@ class Img extends React.Component{
         this.setState({ error: true });
     }
 
-    handleLoad = () => {
+    handleLoad = (e) => {
         this.setState({ loaded: true });
     }
 

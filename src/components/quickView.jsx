@@ -25,11 +25,7 @@ export default function QuickView(props){
                     </div>
 
                     <div className="movie__info">
-                        <div className="movie__title">
-                            <span>
-                                <h2>{ title }</h2>
-                            </span>
-                        </div>
+                        <h2 className = 'movie__title'>{ title }</h2>
 
                         <div className = 'movie__description'>
                             <h2>Описание</h2>

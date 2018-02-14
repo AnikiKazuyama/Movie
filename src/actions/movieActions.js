@@ -8,11 +8,10 @@ export function fetchMovieIfNeeded(id, url){
     }
 }
 
-export function fetchMovie(id, url){
+export function fetchMovie(id){
     return {
         type: FETCH_MOVIE,
         id, 
-        url
     }
 }
 
