@@ -20,3 +20,20 @@ export function minutesToHours(minutes){
     const minute = minutes - 60 * hours;
     return `${hours}ч ${minute}м`;
 }
+
+export function formatingNumber(number, sepor = '', howMany = 1){
+    const strNum = number.toString();
+    let length = strNum.length;
+    
+    let every = [];
+
+    while(length >= howMany){
+        every.push(strNum.substr(length, howMany));
+        length -= howMany;
+    }
+
+    every.push(strNum.substr(0, howMany));
+    every.reverse();
+
+    return every.join(sepor);
+}

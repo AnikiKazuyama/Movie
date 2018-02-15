@@ -19,13 +19,13 @@ export default class Sidebar extends React.Component{
         } = this.props;
 
         return (
-            <aside className="sidebar">
+            <div className="sidebar">
 
                 <h3 className='title'>{ title }</h3>
 
                 { this.content(sidebarConstructor) }
 
-            </aside>
+            </div>
         );
     }
 }

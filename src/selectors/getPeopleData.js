@@ -8,26 +8,35 @@ export function getPage(state){
     return Number(page);
 }
 
-export function getTotalPages(state){
+const stuff = (state) => {
     const page = getPage(state);
     const people = state.people;
-    const pageExist = page in people;
+    const pageExist = isPageExist(people, page);
+    return { 
+        page, 
+        pageExist,
+        people
+    }
+}
+
+const isPageExist = (people, page) => {
+    return page in people;
+}
+
+export function getTotalPages(state){
+    const { people, page, pageExist } = stuff(state);
     const totalPages = pageExist ? people[page].total_pages : 0;
     return totalPages;
 }
 
 export function getPeople(state){
-    const page = getPage(state);
-    const people = state.people;
-    const pageExist = page in people;
+    const { people, page, pageExist } = stuff(state);
     const peopleResult = pageExist ? people[page].results : [];
     return peopleResult;
 }
 
 export function getIsfetching(state){
-    const page = getPage(state);
-    const people = state.people;
-    const pageExist = page in people;
+    const { people, page, pageExist } = stuff(state);
     const isFetching = pageExist ? people[page].isFetching : false;
     return isFetching;
 }

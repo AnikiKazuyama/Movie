@@ -10,26 +10,37 @@ export const getPage = (state) => {
     return page ? page : 1; 
 }
 
-export const getIsFetching = (state) => {
+const isPageExist = (movies, category, page) => {
+    const existCategory = category in movies;
+    return existCategory ? page in movies[category]: false;
+}
+
+const stuff = (state) => {
     const category = getCategory(state);
     const page = getPage(state);
-    const existCategory = category in state.movies;
-    const existPage = existCategory ? page in state.movies[category]: false;
+    const movies = state.movies;
+    const existPage = isPageExist(movies, category, page);
+    return {
+        category, 
+        page, 
+        existPage
+    }
+}
+
+export const getIsFetching = (state) => {
+    const { page, category, existPage } = stuff(state);
+    
     return existPage ? state.movies[category][page].isFetching : false ;
 }
 
 export const getMovies = (state) => {
-    const category = getCategory(state);
-    const page = getPage(state);
-    const existCategory = category in state.movies;
-    const existPage = existCategory ? page in state.movies[category]: false;
+    const { page, category, existPage } = stuff(state);
+
     return existPage ? state.movies[category][page].results : [];
 }
 
 export const getTotal_pages = (state) =>{
-    const category = getCategory(state);
-    const page = getPage(state);
-    const existCategory = category in state.movies;
-    const existPage = existCategory ? page in state.movies[category]: false;
+    const { page, category, existPage } = stuff(state);
+
     return existPage ? state.movies[category][page].total_pages : false;
 }

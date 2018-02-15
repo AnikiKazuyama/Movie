@@ -13,7 +13,7 @@ import { IMGSIZE1000 } from '../constants/movies'
 
 import { Route } from 'react-router-dom';
 
-import { dateToNormal, findeReliseDate, minutesToHours } from '../util/dateToNormal';
+import { dateToNormal, findeReliseDate, minutesToHours, formatingNumber  } from '../util/dateToNormal';
 
 class Movie extends React.Component {
     componentDidMount(){
@@ -37,7 +37,7 @@ class Movie extends React.Component {
 
         return genres.map( genre => {
             return <span className = 'keyword' key = { genre.id } >{ genre.name }</span>
-        } )
+        });
     }
 
     render(){
@@ -88,7 +88,7 @@ class Movie extends React.Component {
 
             {
                 title: 'Бюжет', 
-                content:  `$${ budget}`
+                content:  `$${ formatingNumber(budget, ' ', 3) }`
             }, 
 
             {
