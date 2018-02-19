@@ -1,6 +1,10 @@
 import React from 'react';
 
+import { Link } from 'react-router-dom';
+
+import Loader from './loader';''
 import Sidebar from './sidebar';
+import Filmograthy from './filmography';
 
 import { imgPath } from '../util/img';
 import { dateToNormal } from '../util/dateToNormal';
@@ -9,6 +13,8 @@ import { wrapTextInTagPBySymbol } from '../util/text';
 import { IMGSIZE1000 } from '../constants/movies'; 
 import { GENDERS, MALE } from '../constants/gender';
 import { INFORMATION_ABOUT_PERSONE, BIRTHDAY, BIRTH_PALCE, OFFICIAL_SITE, BIOGRAPHY } from '../constants/extra';
+
+import  array  from 'lodash/array';
 
 
 export default class Person extends React.Component{
@@ -42,25 +48,26 @@ export default class Person extends React.Component{
         return best;
     }
 
-    knownFor(movies){
-        const popular = this.mostPopularMovies(movies, 8);
+    knownFor(movies, howMany){
+
+        const { match } = this.props;
+        console.log(match);
+        const popular = this.mostPopularMovies(movies, howMany);
 
         return popular.map( (movie, index) => {
             return(
                 <div className = "card" key = { index }>
-                    <img style = {{width: '200px', height: 'auto'}} src={ imgPath(IMGSIZE1000, movie.poster_path) } alt=""/>
-                    <div>{movie.title}</div>
+                    <Link to = { `/${movie.id}` }><img style = {{width: '200px', height: 'auto'}} src={ imgPath(IMGSIZE1000, movie.poster_path) } alt=""/></Link>
+                    <div><Link to = { `/${movie.id}` }>{movie.title}</Link></div>
                 </div>
             )
         });
     }
 
-    
-
     render(){
         const { person } = this.props;
         
-        if(person && !person.isFetching){
+        if(person){
 
             const {
                 name,
@@ -68,10 +75,13 @@ export default class Person extends React.Component{
                 gender, 
                 place_of_birth,
                 birthday, 
-                homepage
+                homepage, 
+                isFetching
             } = person;
 
-            const formatingBiography = wrapTextInTagPBySymbol(biography, '\n\n');
+            if(isFetching){
+                return <Loader isFetching />
+            }
 
             const castMovies = person.movie_credits.cast;
 
@@ -108,22 +118,22 @@ export default class Person extends React.Component{
                             <h2 className="name">{ name }</h2>
                             <div className="biograthi">
                                 <h3>{ BIOGRAPHY }</h3>
-                                <div>{ formatingBiography }</div>
+                                <div>{ wrapTextInTagPBySymbol(biography, '\n\n') }</div>
                             </div>
 
                             <div className="known-for">
                                 <h2 style = {{ display: 'block' }}>Известен по</h2>
                                 <div className="filsms" style = {{display: 'flex', flexWrap: 'wrap'}}>
-                                    { this.knownFor(castMovies) }
+                                    { this.knownFor(castMovies, 8) }
                                 </div>
                             </div>
 
-                            <div className="all-films">
-
-                            </div>
+                            <Filmograthy movies = { castMovies } />
                         </div>
                     </div>
         }
-        return <div>Нутакое</div>;
+
+        return null;
+        
     }
 }

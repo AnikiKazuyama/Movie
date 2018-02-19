@@ -5,7 +5,7 @@ export function dateToNormal(data){
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
     const dateToLocal = date.toLocaleDateString("ru-RU", options);
 
-    return(dateToLocal);
+    return dateToLocal == "Invalid Date" ? 'Неизвестно' : dateToLocal;
 }
 
 export function findeReliseDate(obj){
@@ -18,22 +18,23 @@ export function findeReliseDate(obj){
 export function minutesToHours(minutes){
     const hours = Math.floor(minutes / 60);
     const minute = minutes - 60 * hours;
-    return `${hours}ч ${minute}м`;
+    return minute == 0 ? `${hours}ч` : `${hours}ч ${minute}м`;
 }
 
 export function formatingNumber(number, sepor = '', howMany = 1){
     const strNum = number.toString();
-    let length = strNum.length;
-    
-    let every = [];
 
-    while(length >= howMany){
-        every.push(strNum.substr(length, howMany));
-        length -= howMany;
+    let start = strNum.length;
+    let end;
+
+    let result = [];
+
+    while((end = start) > 0){
+        start -= howMany;
+        result.push(strNum.substring(start, end));
     }
 
-    every.push(strNum.substr(0, howMany));
-    every.reverse();
+    result.reverse();
 
-    return every.join(sepor);
+    return result.join(sepor);
 }

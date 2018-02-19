@@ -65,6 +65,7 @@ class Movie extends React.Component {
             poster_path,
             backdrop_path,
             budget,
+            revenue,
             keywords,
             release_dates,
             genres, 
@@ -89,6 +90,11 @@ class Movie extends React.Component {
             {
                 title: 'Бюжет', 
                 content:  `$${ formatingNumber(budget, ' ', 3) }`
+            }, 
+
+            {
+                title: 'Сборы', 
+                content:  `$${ formatingNumber(revenue, ' ', 3) }`
             }, 
 
             {
